@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇮🇳 Cast Your Vote - Indian Blockchain Voting</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="form-container">
+          <div class="text-center mb-4">
+            <h2 class="hero-title pulse">
+              <i class="fas fa-vote-yea"></i> 
+              🇮🇳 Cast Your Vote
+            </h2>
+            <p class="hero-subtitle fade-in">Choose your preferred political party</p>
+          </div>
+          
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div class="alert alert-info">{{ messages[0] }}</div>
+            {% endif %}
+          {% endwith %}
+          
+          <form method="post" id="voteForm">
+            <div class="row g-3">
+              <!-- BJP -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="bjp" style="animation-delay: 0.1s;">
+                  <input type="radio" name="candidate" value="Bharatiya Janata Party (BJP)" id="bjp" class="form-check-input d-none" required>
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/bjp-logo.png') }}" alt="BJP" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Bharatiya Janata Party</h5>
+                      <small class="text-muted">BJP</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- INC -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="inc" style="animation-delay: 0.2s;">
+                  <input type="radio" name="candidate" value="Indian National Congress (INC)" id="inc" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/inc-logo.png') }}" alt="INC" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Indian National Congress</h5>
+                      <small class="text-muted">INC</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- AAP -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="aap" style="animation-delay: 0.3s;">
+                  <input type="radio" name="candidate" value="Aam Aadmi Party (AAP)" id="aap" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/aap-logo.jpg') }}" alt="AAP" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Aam Aadmi Party</h5>
+                      <small class="text-muted">AAP</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- BSP -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="bsp" style="animation-delay: 0.4s;">
+                  <input type="radio" name="candidate" value="Bahujan Samaj Party (BSP)" id="bsp" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/bsp-logo.png') }}" alt="BSP" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Bahujan Samaj Party</h5>
+                      <small class="text-muted">BSP</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- Shiv Sena -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="ss" style="animation-delay: 0.5s;">
+                  <input type="radio" name="candidate" value="Shiv Sena (SS)" id="ss" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/ss-logo.png') }}" alt="SS" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Shiv Sena</h5>
+                      <small class="text-muted">SS</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- CPI -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="cpi" style="animation-delay: 0.6s;">
+                  <input type="radio" name="candidate" value="Communist Party of India (CPI)" id="cpi" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/cpi-logo.png') }}" alt="CPI" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Communist Party of India</h5>
+                      <small class="text-muted">CPI</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- NCP -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="ncp" style="animation-delay: 0.7s;">
+                  <input type="radio" name="candidate" value="Nationalist Congress Party (NCP)" id="ncp" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/ncp-logo.png') }}" alt="NCP" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Nationalist Congress Party</h5>
+                      <small class="text-muted">NCP</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- TMC -->
+              <div class="col-md-6">
+                <label class="party-card fade-in" for="tmc" style="animation-delay: 0.8s;">
+                  <input type="radio" name="candidate" value="Trinamool Congress (TMC)" id="tmc" class="form-check-input d-none">
+                  <div class="d-flex align-items-center">
+                    <div class="party-symbol">
+                      <img src="{{ url_for('static', filename='images/tmc-logo.jpg') }}" alt="TMC" class="party-logo">
+                    </div>
+                    <div>
+                      <h5 class="party-name">Trinamool Congress</h5>
+                      <small class="text-muted">TMC</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-indian btn-lg">
+                <i class="fas fa-vote-yea"></i> Submit Vote
+              </button>
+            </div>
+          </form>
+          
+          <div class="text-center mt-4">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add visual feedback for party selection
+    document.querySelectorAll('input[name="candidate"]').forEach(input => {
+      input.addEventListener('change', function() {
+        // Remove selected class from all cards
+        document.querySelectorAll('.party-card').forEach(card => {
+          card.classList.remove('selected');
+        });
+        // Add selected class to current card
+        this.closest('.party-card').classList.add('selected');
+      });
+    });
+    
+    // Form validation and confirmation
+    document.getElementById('voteForm').addEventListener('submit', function(e) {
+      const selected = document.querySelector('input[name="candidate"]:checked');
+      if (!selected) {
+        e.preventDefault();
+        alert('Please select a political party before submitting your vote.');
+        return;
+      }
+      
+      // Show confirmation dialog
+      const candidateName = selected.value;
+      const confirmed = confirm(`Are you sure you want to vote for "${candidateName}"?\n\nThis action cannot be undone.`);
+      if (!confirmed) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
